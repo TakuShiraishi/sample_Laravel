@@ -19,4 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', 'App\Http\Controllers\ArticleController@index')->name('articles.index'); // ここを追記
+
+Route::resource('articles', 'App\Http\Controllers\ArticleController')->except('index'); // ここを編集
+
+Auth::routes(); // bootstrap導入時に勝手に追記されている
+
+Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home'); // b
